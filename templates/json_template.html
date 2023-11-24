@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ result.title }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #23242a; /* Dark background */
+            color: #fff; /* White text */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure that the content takes at least the full height of the viewport */
+        }
+
+        hr {
+            background-color: #1C1C1C; /* Dark gray line */
+            height: 2px;
+            border: none;
+            margin: 20px 0;
+        }
+
+        h1, h2, pre, label, button, footer {
+            color: #fff; /* White text */
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        pre {
+            font-size: 16px;
+            color: #D9138a; /* Pinkish-purple */
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 15px; /* Increased padding for larger input */
+            margin-bottom: 15px; /* Increased margin-bottom for more space */
+            width: 70%; /* Take up the full width of the container */
+            background-color: #f8f8f8; /* Light gray background */
+            border: 1px solid #1C1C1C; /* Dark gray border */
+            color: #23242a; /* Dark background for text */
+            border-radius: 8px; /* Rounded corners */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition for background and border color */
+        }
+
+        input:focus {
+            background-color: #fff; /* White background when focused */
+            border-color: #45f3ff; /* Tron blue border when focused */
+            outline: none; /* Remove the default focus outline */
+        }
+
+        button {
+            background-color: #45f3ff; /* Tron blue */
+            color: #23242a; /* Dark background */
+            padding: 15px 30px; /* Larger padding for bigger buttons */
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and color */
+            font-size: 18px; /* Larger font size for buttons */
+            text-decoration: none; /* Remove underline for links */
+            display: inline-block; /* Ensure buttons are displayed as blocks */
+        }
+
+        button:hover {
+            background-color: #1C1C1C; /* Dark gray when hovered */
+            color: #fff; /* White text */
+        }
+
+        footer {
+            background-color: #1C1C1C; /* Dark gray footer */
+            color: #fff; /* White text */
+            padding: 10px;
+            text-align: center;
+            margin-top: auto; /* Push the footer to the bottom */
+            width: 100%;
+        }
+
+        section {
+            text-align: center;
+            background: rgba(69, 243, 255, 0.1); /* Tron blue background with transparency */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+            width: 80%;
+            margin: 0 auto;
+            height: auto;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        section:hover {
+            transform: scale(1.05); /* Enlarge the section on hover */
+        }
+        div {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <hr>
+    <h1>{{ result.title }}</h1>
+    <hr>
+    <form method="post" action="/weather">
+        <label for="city">Enter city:</label>
+        <input type="text" id="city" name="city" required>
+        <input type="hidden" name="mode" value="json">
+        <BR>
+        <button type="submit">Get Weather</button>
+    </form>
+    <hr>
+    <!-- Section for City -->
+    <section>
+        <h2>City</h2>
+        <div style="padding: 20px; background-color: #f8f8f8;">
+            <pre>{{ result.data.city }}</pre>
+        </div>
+    </section>
+
+
+    <section>
+        <h2>Temperature</h2>
+        <pre id="temperature">{{ result.data.temperature }}</pre>
+    </section>
+
+    <script>
+        // Obtenir l'élément de température
+        var temperatureElement = document.getElementById('temperature');
+
+        // Convertir Kelvin en Celsius
+        var kelvinTemperature = parseFloat(temperatureElement.innerText);
+        var celsiusTemperature = kelvinToCelsius(kelvinTemperature);
+
+        // Mettre à jour le contenu avec la température en Celsius
+        temperatureElement.innerText = celsiusTemperature.toFixed(2) + ' °C';
+
+        // Fonction pour convertir Kelvin en Celsius
+        function kelvinToCelsius(kelvin) {
+            return kelvin - 273.15;
+        }
+    </script>
+
+    <!-- Section for Humidity -->
+    <section>
+        <h2>Humidity</h2>
+        <div style="padding: 20px; background-color: #f8f8f8;">
+            <pre>{{ result.data.humidity }}</pre>
+        </div>
+    </section>
+    <!-- Ces deux sections n'existe pas dans le format JSON donc ils seront mis en commentaire -->
+    <!-- Section for Sunrise -->
+    <!-- Section for Sunset -->
+    <!--
+    <section>
+        <h2>Sunrise</h2>
+        <div style="padding: 20px; background-color: #f8f8f8;">
+            <pre>{{ result.data.sunrise }}</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Sunset</h2>
+        <div style="padding: 20px; background-color: #f8f8f8;">
+            <pre>{{ result.data.sunset }}</pre>
+        </div>
+    </section>
+    -->
+    <div>
+        <form method="get" action="/">
+            <button type="submit">Retourner au menu principal</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>Copyright &copy; 2023 Par Mohammed Adam Ben Khlifa | Tous Les Droits Sont Réservés.</p>
+    </footer>
+
+</body>
+</html>

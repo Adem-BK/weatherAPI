@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather APP | Med Adam BenKhlifa</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #23242a; /* Dark background */
+            color: #fff; /* White text */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure that the content takes at least the full height of the viewport */
+        }
+
+        button {
+            background-color: #45f3ff; /* Tron blue */
+            color: #1C1C1C; /* Dark background */
+            padding: 15px 30px; /* Larger padding for bigger buttons */
+            border: none;
+            margin-bottom: 15px; /* Increased margin for more space between buttons */
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and color */
+            font-size: 18px; /* Larger font size for buttons */
+            text-decoration: none; /* Remove underline for links */
+            display: inline-block; /* Ensure buttons are displayed as blocks */
+        }
+
+        button a {
+            color: #1C1C1C; /* Dark background for text */
+            text-decoration: none; /* Remove underline for links */
+        }
+
+        button:hover {
+            background-color: #1C1C1C; /* Dark gray when hovered */
+            color: #fff; /* White text */
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 30px; /* Increased padding for header */
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 28px; /* Larger font size for header */
+        }
+
+        p {
+            margin: 15px 0; /* Increased margin for more spacing */
+            font-size: 16px; /* Larger font size for paragraphs */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px; /* Increased margin for more spacing between list items */
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff; /* White text */
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #fff; /* Dark gray when hovered */
+        }
+
+        footer {
+            background-color: #1C1C1C; /* Dark gray footer */
+            color: #fff; /* White text */
+            padding: 20px; /* Increased padding for footer */
+            text-align: center;
+            margin-top: auto; /* Push the footer to the bottom */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Météo Express</h1>
+        <p>Choisissez le format que vous souhaitez afficher :</p>
+    </header>
+
+    <nav>
+        <button><a href="/xml" style="text-decoration: none;">Afficher les données au format XML</a></button>
+        <button><a href="/json" style="text-decoration: none;">Afficher les données au format JSON</a></button>
+    </nav>
+
+    <footer>
+        <p>Copyright &copy; 2023 Par Mohammed Adam Ben Khlifa | Tous Les Droits Sont Réservés.</p>
+    </footer>
+</body>
+</html>
